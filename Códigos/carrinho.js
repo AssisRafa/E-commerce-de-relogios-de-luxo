@@ -1,9 +1,3 @@
-/* ============================================
-   W.B. CHRONOS — carrinho.js
-   ============================================ */
-
-// ── CATÁLOGO BASE ─────────────────────────────────────────────────────────────
-// Usado como fallback e para pegar nome/preço/ref por produto base
 
 const CATALOGO_BASE = {
     axiom: {
@@ -23,29 +17,18 @@ const CATALOGO_BASE = {
     }
 };
 
-// ── IMAGENS POR COR ───────────────────────────────────────────────────────────
-// Estrutura: IMAGENS[prodBase][cor] = caminho da imagem
-// Substitua os caminhos pelas suas imagens quando tiver
-
 const IMAGENS = {
     axiom: {
         default: './Relógio elegantes e modernos/Seção 4/Axiom One.jpg',
         default: './Relógio elegantes e modernos/Seção 4/Axiom One - verde.png'
-        // preto: './Relógio elegantes e modernos/Seção 4/Axiom One Preto.jpg',
     },
     helix: {
         default: './Relógio elegantes e modernos/Seção 4/Helix Noir.jpg',
-        // dourado: './Relógio elegantes e modernos/Seção 4/Helix Noir Dourado.jpg',
-        // prata:   './Relógio elegantes e modernos/Seção 4/Helix Noir Prata.jpg',
     },
     vanta: {
         default: './Relógio elegantes e modernos/Seção 4/Vanta Steel.jpg',
-        // verde:  './Relógio elegantes e modernos/Seção 4/Vanta Steel Verde.jpg',
-        // cobre:  './Relógio elegantes e modernos/Seção 4/Vanta Steel Cobre.jpg',
     }
 };
-
-// ── CUPONS VÁLIDOS ────────────────────────────────────────────────────────────
 
 const CUPONS = {
     'WB10':      0.10,
@@ -53,13 +36,9 @@ const CUPONS = {
     'LUXO20':    0.20
 };
 
-// ── ESTADO ───────────────────────────────────────────────────────────────────
-
 let carrinho      = JSON.parse(sessionStorage.getItem('wb_carrinho') || '[]');
 let descontoAtivo = 0;
 let timerInterval = null;
-
-// ── UTILITÁRIOS ──────────────────────────────────────────────────────────────
 
 function salvar() {
     sessionStorage.setItem('wb_carrinho', JSON.stringify(carrinho));
@@ -70,16 +49,12 @@ function formatarPreco(valor) {
 }
 
 function getProduto(item) {
-    // Pega dados base pelo campo 'base' ou pelo id direto
     const base = item.base || item.id;
     return CATALOGO_BASE[base] || null;
 }
 
 function getImagem(item) {
-    // Se o item tem imagem salva (vinda do produto.js), usa ela
     if (item.img) return item.img;
-
-    // Senão tenta pegar do IMAGENS pelo base + cor
     const base = item.base || item.id;
     const cor  = item.cor || 'default';
     return (IMAGENS[base] && IMAGENS[base][cor])
@@ -93,8 +68,6 @@ function calcularSubtotal() {
         return total + (produto ? produto.preco * item.qty : 0);
     }, 0);
 }
-
-// ── RENDERIZAR LISTA ──────────────────────────────────────────────────────────
 
 function renderLista() {
     const lista = document.getElementById('carrinhoLista');
@@ -153,8 +126,6 @@ function renderLista() {
     });
 }
 
-// ── ATUALIZAR RESUMO ──────────────────────────────────────────────────────────
-
 function atualizarResumo() {
     const subtotal  = calcularSubtotal();
     const desconto  = Math.round(subtotal * descontoAtivo);
@@ -177,16 +148,11 @@ function render() {
     renderLista();
     atualizarResumo();
 }
-
-// ── REMOVER ITEM ──────────────────────────────────────────────────────────────
-
 function removerItem(idx) {
     carrinho.splice(idx, 1);
     salvar();
     render();
 }
-
-// ── ALTERAR QUANTIDADE ────────────────────────────────────────────────────────
 
 function alterarQty(idx, acao) {
     if (acao === 'inc') {
@@ -203,8 +169,6 @@ function alterarQty(idx, acao) {
     render();
 }
 
-// ── EVENTOS DELEGADOS NA LISTA ────────────────────────────────────────────────
-
 document.getElementById('carrinhoLista').addEventListener('click', e => {
 
     const btnRemover = e.target.closest('.item-remover');
@@ -219,8 +183,6 @@ document.getElementById('carrinhoLista').addEventListener('click', e => {
     }
 
 });
-
-// ── CUPOM PROMOCIONAL ─────────────────────────────────────────────────────────
 
 document.getElementById('cupomBtn').addEventListener('click', () => {
     const codigo = document.getElementById('cupomInput').value.trim().toUpperCase();
@@ -238,8 +200,6 @@ document.getElementById('cupomBtn').addEventListener('click', () => {
 
     atualizarResumo();
 });
-
-// ── FINALIZAR COMPRA ──────────────────────────────────────────────────────────
 
 document.getElementById('btnFinalizar').addEventListener('click', () => {
 
@@ -273,8 +233,6 @@ document.getElementById('btnFinalizar').addEventListener('click', () => {
 
 });
 
-// ── TIMER REGRESSIVO ──────────────────────────────────────────────────────────
-
 function iniciarTimer() {
     clearInterval(timerInterval);
 
@@ -300,8 +258,6 @@ function iniciarTimer() {
     atualizar();
     timerInterval = setInterval(atualizar, 1000);
 }
-
-// ── CONFIRMAR PAGAMENTO ───────────────────────────────────────────────────────
 
 document.getElementById('btnConfirmarPagamento').addEventListener('click', () => {
 
@@ -330,8 +286,6 @@ document.getElementById('btnConfirmarPagamento').addEventListener('click', () =>
 
 });
 
-// ── VOLTAR À LOJA ─────────────────────────────────────────────────────────────
-
 document.getElementById('btnVoltarLoja').addEventListener('click', () => {
 
     carrinho = [];
@@ -343,7 +297,5 @@ document.getElementById('btnVoltarLoja').addEventListener('click', () => {
     window.location.href = 'index.html';
 
 });
-
-// ── INICIALIZAR ───────────────────────────────────────────────────────────────
 
 render();
