@@ -1,7 +1,3 @@
-/* ============================================
-   W.B. CHRONOS — style.css
-   ============================================ */
-
 *, *::before, *::after {
     margin: 0; padding: 0; box-sizing: border-box;
 }
@@ -45,10 +41,6 @@ body.unlocked {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
 }
-
-/* ============================================
-   HERO
-   ============================================ */
 
 .hero {
     position: relative;
@@ -282,10 +274,6 @@ body.unlocked {
     opacity: 0.6;
 }
 
-/* ============================================
-   SEÇÃO 2 — COLEÇÃO ESSENCIAL
-   ============================================ */
-
 .colecao-section {
     background: #181818;
     padding: 100px 60px;
@@ -394,10 +382,6 @@ body.unlocked {
     40%  { transform: scale(1.06); }
     100% { transform: scale(1); }
 }
-
-/* ============================================
-   PÁGINAS DE PRODUTO
-   ============================================ */
 
 .produto-page {
     min-height: 100vh;
@@ -598,10 +582,6 @@ body.unlocked {
     transform: translateX(-4px);
 }
 
-/* ============================================
-   SEÇÃO — SOBRE A MARCA
-   ============================================ */
-
 .sobre-section {
     position: relative;
     width: 100%;
@@ -684,10 +664,6 @@ body.unlocked {
     color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
 }
-
-/* ============================================
-   CARRINHO
-   ============================================ */
 
 body:has(.carrinho-page) {
     overflow-y: auto;
@@ -1134,10 +1110,6 @@ body:has(.carrinho-page) {
     color: #d8d2c4;
 }
 
-/* ============================================
-   BOLSA FLUTUANTE + BOLINHA CONTADOR
-   ============================================ */
-
 .bolsa-flutuante {
     position: fixed;
     top: 36px;
@@ -1191,10 +1163,6 @@ body:has(.carrinho-page) {
     70%  { transform: scale(1.2); opacity: 1; }
     100% { transform: scale(1); opacity: 1; }
 }
-
-/* ============================================
-   MODAL CHECKOUT — PIX + CONFIRMAÇÃO
-   ============================================ */
 
 .modal-overlay {
     display: none;
@@ -1375,10 +1343,6 @@ body:has(.carrinho-page) {
     border-top: 1px solid rgba(216, 210, 196, 0.12);
 }
 
-/* ============================================
-   MODAL TROCA & GARANTIA
-   ============================================ */
-
 .modal-garantia {
     background: #111111;
     border-radius: 24px;
@@ -1461,10 +1425,6 @@ body:has(.carrinho-page) {
     line-height: 1.75;
     letter-spacing: 0.02em;
 }
-
-/* ============================================
-   MODAL FAQ
-   ============================================ */
 
 .modal-faq {
     background: #111111;
@@ -1556,10 +1516,6 @@ body:has(.carrinho-page) {
     line-height: 1.75;
     letter-spacing: 0.02em;
 }
-
-/* ============================================
-   RODAPÉ
-   ============================================ */
 
 .rodape {
     background: #181818;

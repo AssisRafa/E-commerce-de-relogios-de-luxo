@@ -1,7 +1,3 @@
-/* ============================================
-   W.B. CHRONOS — produto.js
-   ============================================ */
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const bgImg      = document.getElementById('bgImg');
@@ -11,8 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const btnAtivo = document.querySelector('.cor-btn.active') || corBtns[0];
     let corAtiva   = btnAtivo ? (btnAtivo.dataset.cor || 'default') : 'default';
-
-    // ── TROCA DE COR ─────────────────────────────────────────────────────────
 
     corBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -39,8 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
     });
-
-    // ── ADICIONAR AO CARRINHO ─────────────────────────────────────────────────
 
     if (btnPreco) {
 
@@ -99,13 +91,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── BOLSA FLUTUANTE ───────────────────────────────────────────────────────
-
     injetarBolsaFlutuante();
 
 });
-
-// ── FUNÇÕES COMPARTILHADAS ────────────────────────────────────────────────────
 
 function injetarBolsaFlutuante() {
     if (document.querySelector('.bolsa-flutuante')) return;

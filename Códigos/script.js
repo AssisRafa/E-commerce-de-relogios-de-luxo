@@ -1,10 +1,4 @@
-/* ============================================
-   W.B. CHRONOS — script.js
-   ============================================ */
-
 document.addEventListener('DOMContentLoaded', () => {
-
-    // ── RESTAURA POSIÇÃO DO SCROLL ────────────────────────────────────────────
 
     const savedScroll = sessionStorage.getItem('scrollY');
     if (savedScroll) {
@@ -14,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
             sessionStorage.removeItem('scrollY');
         }, 50);
     }
-
-    // ── BOTÃO CTA — libera scroll ─────────────────────────────────────────────
 
     const ctaBtn = document.querySelector('.cta-btn');
     if (ctaBtn) {
@@ -28,15 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── SALVA POSIÇÃO AO IR PRA PRODUTO ──────────────────────────────────────
-
     document.querySelectorAll('.ver-produto-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             sessionStorage.setItem('scrollY', window.scrollY);
         });
     });
-
-    // ── ÍCONE DA BOLSA NO HERO ────────────────────────────────────────────────
 
     const bagBtn = document.querySelector('.bag-btn');
     if (bagBtn) {
@@ -47,13 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'carrinho.html';
         });
 
-        // Atualiza bolinha no hero
         atualizarBolinha();
     }
 
 });
-
-// ── BOLINHA DE CONTADOR ───────────────────────────────────────────────────────
 
 function atualizarBolinha() {
     const btn = document.querySelector('.bag-btn') || document.querySelector('.bolsa-flutuante');
@@ -72,8 +57,6 @@ function atualizarBolinha() {
         btn.appendChild(badge);
     }
 }
-
-// ── ROTAÇÃO DOS RELÓGIOS ──────────────────────────────────────────────────────
 
 document.querySelectorAll('.relogio-img-wrap').forEach(wrap => {
     const imgs = wrap.querySelectorAll('img');
@@ -99,8 +82,6 @@ document.querySelectorAll('.relogio-img-wrap').forEach(wrap => {
     });
 });
 
-// ── MODAL TROCA & GARANTIA ────────────────────────────────────────────────────
-
 document.querySelector('.rodape-link-bold').addEventListener('click', e => {
     e.preventDefault();
     document.getElementById('modalGarantia').classList.add('ativo');
@@ -115,8 +96,6 @@ document.getElementById('modalGarantia').addEventListener('click', e => {
         document.getElementById('modalGarantia').classList.remove('ativo');
     }
 });
-
-// ── MODAL FAQ ─────────────────────────────────────────────────────────────────
 
 document.querySelectorAll('.rodape-link')[1].addEventListener('click', e => {
     e.preventDefault();
@@ -133,17 +112,13 @@ document.getElementById('modalFaq').addEventListener('click', e => {
     }
 });
 
-// ── ACCORDION FAQ ─────────────────────────────────────────────────────────────
-
 document.querySelectorAll('.faq-pergunta').forEach(btn => {
     btn.addEventListener('click', () => {
         const item = btn.closest('.faq-item');
         const jaAberto = item.classList.contains('aberto');
 
-        // Fecha todos
         document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('aberto'));
 
-        // Abre o clicado se estava fechado
         if (!jaAberto) item.classList.add('aberto');
     });
 });

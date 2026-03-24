@@ -1,4 +1,3 @@
-
 const CATALOGO_BASE = {
     axiom: {
         nome:  'Axiom One',
@@ -49,12 +48,15 @@ function formatarPreco(valor) {
 }
 
 function getProduto(item) {
+    
     const base = item.base || item.id;
     return CATALOGO_BASE[base] || null;
 }
 
 function getImagem(item) {
+    
     if (item.img) return item.img;
+
     const base = item.base || item.id;
     const cor  = item.cor || 'default';
     return (IMAGENS[base] && IMAGENS[base][cor])
@@ -68,6 +70,7 @@ function calcularSubtotal() {
         return total + (produto ? produto.preco * item.qty : 0);
     }, 0);
 }
+
 
 function renderLista() {
     const lista = document.getElementById('carrinhoLista');
@@ -148,6 +151,7 @@ function render() {
     renderLista();
     atualizarResumo();
 }
+
 function removerItem(idx) {
     carrinho.splice(idx, 1);
     salvar();
